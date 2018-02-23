@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  status: number = 1;
+  status = 1;
 
   statusFill(number: number) {
     console.log(number);
