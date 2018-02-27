@@ -11,14 +11,16 @@ export class RecipeService {
   constructor(private slService: ShoppingListService) {}
 
   private recipes: Recipe[] = [
-    new Recipe('Stewed Beef',
+    new Recipe(
+      'Stewed Beef',
       'this is a dish sample of stewed beef',
       'https://static01.nyt.com/images/2014/04/11/dining/beefstew/beefstew-articleLarge-v3.jpg',
       [
         new Ingredient('beef', 1),
         new Ingredient('carrots', 2)
       ]),
-    new Recipe('Burger I like',
+    new Recipe(
+      'Burger I like',
       'this is a sample of burger',
       'http://bk-apac-prd.s3.amazonaws.com/sites/burgerking.co.nz/files/BUR2423D_Kings-Collection_PRODUCT_300x270_02%5B1%5D.png',
       [
@@ -29,6 +31,10 @@ export class RecipeService {
 
   getRecipes() {
     return this.recipes.slice();
+  }
+
+  getRecipe(index: number) {
+    return this.recipes[index];
   }
 
   addToShoppingList(ingredients: Ingredient[]) {
