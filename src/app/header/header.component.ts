@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component} from '@angular/core';
 
 
 @Component({
@@ -6,14 +6,14 @@ import {Component, EventEmitter, Output} from '@angular/core';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent {
-  @Output() recipeDisplayed = new EventEmitter<number>();
+  // @Output() recipeDisplayed = new EventEmitter<number>();
 
-  onRecipesStart() {
-    this.recipeDisplayed.emit(1);
-  }
-
-  onShoppingListStart() {
-    this.recipeDisplayed.emit(2);
-  }
+  // onRecipesStart() {
+  //   this.recipeDisplayed.emit(1);
+  // }
+  //
+  // onShoppingListStart() {
+  //   this.recipeDisplayed.emit(2);
+  // }
 
 }
