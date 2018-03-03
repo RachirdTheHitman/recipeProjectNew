@@ -24,6 +24,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import {AuthService} from './auth/auth.service';
 import {RouterModule} from '@angular/router';
+import {AuthGuard} from './auth/auth-guard.service';
 
 
 @NgModule({
@@ -51,7 +52,7 @@ import {RouterModule} from '@angular/router';
     HttpModule,
     RouterModule
   ],
-  providers: [ShoppingListService, RecipeService, DataStorageService, AuthService],
+  providers: [ShoppingListService, RecipeService, DataStorageService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
