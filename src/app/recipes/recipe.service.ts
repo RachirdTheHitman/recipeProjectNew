@@ -49,6 +49,11 @@ export class RecipeService {
     this.recipesChanged.next(this.recipes.slice());
   }
 
+  updataRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
   addToShoppingList(ingredients: Ingredient[]) {
     this.slService.addIngredients(ingredients);
 
