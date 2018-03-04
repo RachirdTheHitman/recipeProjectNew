@@ -7,7 +7,7 @@ import {RecipeStartComponent} from './recipe-start/recipe-start.component';
 import {RouterModule, Routes} from '@angular/router';
 
 const recipesRoutes: Routes = [
-  { path: '',
+  { path: '', // delete the path parameter if you want to implement lazy loading
     component: RecipesComponent,
     children: [
       { path: '', component: RecipeStartComponent },
@@ -16,12 +16,14 @@ const recipesRoutes: Routes = [
       { path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthGuard] }
     ] }
 ];
+
 @NgModule({
   imports: [
     RouterModule.forChild(recipesRoutes)
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
-export class RecipesRoutingModule{
+export class RecipesRoutingModule {
 
 }
