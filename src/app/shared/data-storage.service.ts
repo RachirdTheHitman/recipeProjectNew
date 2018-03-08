@@ -3,7 +3,7 @@ import {RecipeService} from '../recipes/recipe.service';
 import {Recipe} from '../recipes/recipe.model';
 import 'rxjs/add/operator/map';
 import {AuthService} from '../auth/auth.service';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams, HttpRequest} from '@angular/common/http';
 
 @Injectable()
 export class DataStorageService {
@@ -13,22 +13,27 @@ export class DataStorageService {
               private authService: AuthService) {}
 
   storeRecipes() {
-    const token = this.authService.getToken();
+    // const token = this.authService.getToken();
     // const header = new HttpHeaders().set('Authorization', 'hello world');
     // return this.httpClient.put('https://yz-recipe-book.firebaseio.com/recipes.json?auth=' + token, this.recipeService.getRecipes(),
-    return this.httpClient.put('https://yz-recipe-book.firebaseio.com/recipes.json', this.recipeService.getRecipes(),
-      {
-        observe: 'body',
-        params: new HttpParams().set('auth', token)
-        // headers: new HttpHeaders().set('Authorization', 'hello world')
-      });
+    // return this.httpClient.put('https://yz-recipe-book.firebaseio.com/recipes.json', this.recipeService.getRecipes(),
+    //   {
+    //     observe: 'body',
+    //     params: new HttpParams().set('auth', token)
+    //     // headers: new HttpHeaders().set('Authorization', 'hello world')
+    //   });
+    const req = new HttpRequest('PUT', 'https://yz-recipe-book.firebaseio.com/recipes.json',
+      this.recipeService.getRecipes(),
+      // {reportProgress: true, params: new HttpParams().set('auth', token)});
+      {reportProgress: true});
+    return this.httpClient.request(req);
   }
 
   getRecipes() {
-    const token = this.authService.getToken();
+    // const token = this.authService.getToken();
 
     // return this.httpClient.get<Recipe[]>('https://yz-recipe-book.firebaseio.com/recipes.json?auth=' + token)
-    return this.httpClient.get<Recipe[]>('https://yz-recipe-book.firebaseio.com/recipes.json?auth=' + token,
+    return this.httpClient.get<Recipe[]>('https://yz-recipe-book.firebaseio.com/recipes.json',
       {
         observe: 'body',
         responseType: 'json'
