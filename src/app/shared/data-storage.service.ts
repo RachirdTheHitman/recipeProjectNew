@@ -1,29 +1,41 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
 import {RecipeService} from '../recipes/recipe.service';
 import {Recipe} from '../recipes/recipe.model';
 import 'rxjs/add/operator/map';
 import {AuthService} from '../auth/auth.service';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 @Injectable()
 export class DataStorageService {
 
-  constructor(private http: Http,
+  constructor(private httpClient: HttpClient,
               private recipeService: RecipeService,
               private authService: AuthService) {}
 
   storeRecipes() {
     const token = this.authService.getToken();
-    return this.http.put('https://yz-recipe-book.firebaseio.com/recipes.json?auth=' + token, this.recipeService.getRecipes());
+    // const header = new HttpHeaders().set('Authorization', 'hello world');
+    // return this.httpClient.put('https://yz-recipe-book.firebaseio.com/recipes.json?auth=' + token, this.recipeService.getRecipes(),
+    return this.httpClient.put('https://yz-recipe-book.firebaseio.com/recipes.json', this.recipeService.getRecipes(),
+      {
+        observe: 'body',
+        params: new HttpParams().set('auth', token)
+        // headers: new HttpHeaders().set('Authorization', 'hello world')
+      });
   }
 
   getRecipes() {
     const token = this.authService.getToken();
 
-    return this.http.get('https://yz-recipe-book.firebaseio.com/recipes.json?auth=' + token)
+    // return this.httpClient.get<Recipe[]>('https://yz-recipe-book.firebaseio.com/recipes.json?auth=' + token)
+    return this.httpClient.get<Recipe[]>('https://yz-recipe-book.firebaseio.com/recipes.json?auth=' + token,
+      {
+        observe: 'body',
+        responseType: 'json'
+      })
       .map(
-        (response) => {
-          const recipes: Recipe[] = response.json();
+        (recipes) => {
+          // const recipes: Recipe[] = response.json();
           for (let recipe of recipes) {
             if (!recipe['ingredients']) {
               recipe['ingredients'] = [];
@@ -31,6 +43,8 @@ export class DataStorageService {
             }
           }
           return recipes;
+          // console.log(recipes);
+          // return [];
         }
       )
       .subscribe(

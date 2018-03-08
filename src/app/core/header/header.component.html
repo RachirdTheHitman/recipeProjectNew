@@ -13,7 +13,7 @@
       <!--<button class="btn btn-success" (click)="onRecipesStart()"></button>-->
       <!--<button class="btn btn-primary" (click)="onShoppingListStart()"></button>-->
       <ul class="nav navbar-nav navbar-right">
-        <ng-template [ngIf]="!authService.isAuthenticated()">
+        <ng-template [ngIf]="!isAuth()">
           <li><a routerLink="/signup">Register</a></li>
           <li><a routerLink="/signin">Login</a></li>
         </ng-template>
@@ -21,8 +21,8 @@
         <li><a
           style="cursor: pointer;"
           (click)="onLogout()"
-          *ngIf="authService.isAuthenticated()">Logout</a></li>
-        <li class="dropdown" appDropdown *ngIf="authService.isAuthenticated()">
+          *ngIf="isAuth()">Logout</a></li>
+        <li class="dropdown" appDropdown *ngIf="isAuth()">
           <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>
