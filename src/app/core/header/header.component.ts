@@ -7,6 +7,8 @@ import {Store} from '@ngrx/store';
 import * as fromApp from '../../store/app.reducers';
 import * as fromAuth from '../../auth/store/auth.reducers';
 import {Observable} from 'rxjs/Observable';
+import * as AuthActions from '../../auth/store/auth.actions';
+
 
 
 
@@ -49,7 +51,8 @@ export class HeaderComponent implements OnInit {
   //   this.recipeDisplayed.emit(2);
   // }
   onLogout() {
-    this.authService.logout();
+    // this.authService.logout();
+    this.store.dispatch(new AuthActions.Logout());
   }
 
   // isAuth() {
