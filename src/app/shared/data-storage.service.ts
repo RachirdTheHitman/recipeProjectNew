@@ -22,9 +22,9 @@ export class DataStorageService {
     //     params: new HttpParams().set('auth', token)
     //     // headers: new HttpHeaders().set('Authorization', 'hello world')
     //   });
+      // {reportProgress: true, params: new HttpParams().set('auth', token)});
     const req = new HttpRequest('PUT', 'https://yz-recipe-book.firebaseio.com/recipes.json',
       this.recipeService.getRecipes(),
-      // {reportProgress: true, params: new HttpParams().set('auth', token)});
       {reportProgress: true});
     return this.httpClient.request(req);
   }
@@ -61,7 +61,7 @@ export class DataStorageService {
           // const recipes: Recipe[] = transferedJson;
           // const recipes: Recipe[] = response.json();
           // console.log(recipes);
-          this.recipeService.updataRecipes(recipes);
+          this.recipeService.setRecipes(recipes);
         }
       );
   }

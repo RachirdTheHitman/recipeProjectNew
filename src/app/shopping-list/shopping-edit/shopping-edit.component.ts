@@ -1,6 +1,5 @@
-import {Component, OnInit, ElementRef, ViewChild, OnDestroy} from '@angular/core';
+import {Component, OnInit, ViewChild, OnDestroy} from '@angular/core';
 import {Ingredient} from '../../shared/ingredient.model';
-import {ShoppingListService} from '../shopping-list.service';
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs/Subscription';
 import index from '@angular/cli/lib/cli';
@@ -25,7 +24,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   // editedItemIndex: number;
   editedItem: Ingredient;
 
-  constructor(private shoppinglistService: ShoppingListService,
+  constructor(
               private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {

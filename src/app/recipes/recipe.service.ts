@@ -43,37 +43,37 @@ export class RecipeService {
     return this.recipes.slice();
   }
 
-  getRecipe(index: number) {
-    return this.recipes[index];
-  }
+  // getRecipe(index: number) {
+  //   return this.recipes[index];
+  // }
 
-  addRecipe(recipe: Recipe) {
-    this.recipes.push(recipe);
-    this.recipesChanged.next(this.recipes.slice());
-  }
+  // addRecipe(recipe: Recipe) {
+  //   this.recipes.push(recipe);
+  //   this.recipesChanged.next(this.recipes.slice());
+  // }
+  //
+  // updateRecipe(index: number, newRecipe: Recipe) {
+  //   this.recipes[index] = newRecipe;
+  //   this.recipesChanged.next(this.recipes.slice());
+  // }
 
-  updateRecipe(index: number, newRecipe: Recipe) {
-    this.recipes[index] = newRecipe;
-    this.recipesChanged.next(this.recipes.slice());
-  }
+  // updateRecipes(recipes: Recipe[]) {
+  //   this.recipes = recipes;
+  //   this.recipesChanged.next(this.recipes.slice());
+  // }
+  //
+  // addToShoppingList(ingredients: Ingredient[]) {
+  //   // this.slService.addIngredients(ingredients);
+  //   this.store.dispatch(new ShoppingListActions.AddIngredients(ingredients));
+  //
+  //   // for (let i = 0; i++; i < ingredients.length) {
+  //   //   this.slService.addIngredient(ingredients[i]);
+  //   // }
+  // }
 
-  updataRecipes(recipes: Recipe[]) {
-    this.recipes = recipes;
-    this.recipesChanged.next(this.recipes.slice());
-  }
-
-  addToShoppingList(ingredients: Ingredient[]) {
-    // this.slService.addIngredients(ingredients);
-    this.store.dispatch(new ShoppingListActions.AddIngredients(ingredients));
-
-    // for (let i = 0; i++; i < ingredients.length) {
-    //   this.slService.addIngredient(ingredients[i]);
-    // }
-  }
-
-  deleteRecipe(index: number) {
-    this.recipes.splice(index, 1);
-    this.recipesChanged.next(this.recipes.slice());
-  }
+  // deleteRecipe(index: number) {
+  //   this.recipes.splice(index, 1);
+  //   this.recipesChanged.next(this.recipes.slice());
+  // }
 
 }
